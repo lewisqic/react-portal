@@ -98,9 +98,5 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth:account'], 'namespac
 
 
 Route::group(['middleware' => ['guest'], 'namespace' => 'Index'], function () {
-
-    Route::get('/', function () {
-        die('home page');
-    });
-
+    Route::get('/', function() { return redirect('auth/login'); });
 });
