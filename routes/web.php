@@ -8,13 +8,15 @@ Route::group(['prefix' => 'auth', 'middleware' => ['guest'], 'namespace' => 'Aut
     // GET
     Route::get('/', function() { return redirect('auth/login'); });
     Route::get('login', ['uses' => 'AuthIndexController@showLogin']);
-    Route::get('logout', ['uses' => 'AuthIndexController@handleLogout']);
     Route::get('forgot', ['uses' => 'AuthIndexController@showForgot']);
     Route::get('reset/{token}', ['uses' => 'AuthIndexController@showReset'])->name('password.reset');
     // POST
     Route::post('login', ['uses' => 'AuthIndexController@handleLogin']);
     Route::post('forgot', ['uses' => 'AuthIndexController@handleForgot']);
     Route::post('reset', ['uses' => 'AuthIndexController@handleReset']);
+});
+Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+    Route::get('logout', ['uses' => 'AuthIndexController@handleLogout']);
 });
 
 
