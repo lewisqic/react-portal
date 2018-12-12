@@ -27,7 +27,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin', 'permission'],
 
     // GET
     Route::get('/', ['uses' => 'AdminIndexController@showDashboard']);
-    Route::get('data', ['uses' => 'AdminIndexController@data']);
     Route::post('save-configurator', 'AdminIndexController@saveConfigurator');
     Route::post('save-favorite', 'AdminIndexController@saveFavorite');
     Route::post('delete-favorite', 'AdminIndexController@deleteFavorite');
@@ -75,8 +74,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin', 'permission'],
 Route::group(['prefix' => 'account', 'middleware' => ['auth:account'], 'namespace' => 'Account'], function() {
 
     // GET
-    Route::get('/', ['uses' => 'AccountIndexController@showDashboard']);
+    Route::get('/', ['uses' => 'AccountIndexController@showPortal']);
     Route::post('save-configurator', 'AccountIndexController@saveConfigurator');
+    Route::post('save-favorite', 'AccountIndexController@saveFavorite');
+    Route::post('delete-favorite', 'AccountIndexController@deleteFavorite');
+    Route::get('search', 'AccountSearchController@showResults');
 
     // profile
     Route::get('profile', ['uses' => 'AccountProfileController@index']);
