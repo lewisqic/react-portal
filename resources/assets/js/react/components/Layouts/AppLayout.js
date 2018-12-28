@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Link, Route } from "react-router-dom";
+import { NavLink, Link, Route, Redirect } from "react-router-dom";
 import { toJS } from 'mobx';
 import { inject, observer } from "mobx-react";
 import { boundMethod } from 'autobind-decorator';
@@ -12,6 +12,7 @@ import HeaderLinks from './HeaderLinks';
 import UserSubmenu from '../Content/User/Submenu';
 import KaseyaSubmenu from '../Content/Kaseya/Submenu';
 
+@inject('store')
 class AppLayout extends Component {
 
     constructor(props) {
@@ -64,6 +65,8 @@ class AppLayout extends Component {
     }
     
     render() {
+        const billing = this.props.store.billing;
+        const subscription = toJS(billing.subscription);
         const submenus = {
             user: UserSubmenu,
             kaseya: KaseyaSubmenu
@@ -101,7 +104,7 @@ class AppLayout extends Component {
                 <div className="content">
                     <HeaderLinks toggleNotificationBar={ this.toggleNotificationBar } />
                     <div className="content-main">
-                        { this.props.children }
+                        { subscription.status === 'Canceled' && pathName() !== 'billing' ? <Redirect to={ path('billing') } /> : this.props.children }
                     </div>
                 </div>
                 <CSSTransition
