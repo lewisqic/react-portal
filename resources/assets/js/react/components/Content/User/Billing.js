@@ -184,7 +184,7 @@ class Billing extends Component {
 
                                 <div className="form-group row">
                                     <div className="col-sm-3">
-                                        <h5 className="mt-3 mb-0 text-theme text-right">My Subscription</h5>
+                                        <h5 className="mb-0 text-theme text-right">My Subscription</h5>
                                     </div>
                                 </div>
 

@@ -284,6 +284,12 @@ APP STYLES
 
 
 .app-layout {
+    .card {
+        margin-bottom: 20px;
+        .card-body {
+            padding-top: 30px;
+        }
+    }
     .sidebar {
         padding-top: 30px;
         width: 120px;

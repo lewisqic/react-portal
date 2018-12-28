@@ -18524,6 +18524,14 @@ div.labels-right .col-form-label {
 APP STYLES
 *************************************************/
 
+.app-layout .card {
+  margin-bottom: 20px;
+}
+
+.app-layout .card .card-body {
+  padding-top: 30px;
+}
+
 .app-layout .sidebar {
   padding-top: 30px;
   width: 120px;
