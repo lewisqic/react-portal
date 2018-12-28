@@ -20,7 +20,7 @@ class App extends Component {
                 </div>
                 <div className="card">
                     <div className="card-body">
-                        <h4>To view a demonstration the external API connection, <Link to={ path('api-example') }>Click Here</Link>.</h4>
+                        <h4>To view a demonstration of the external API connection, <Link to={ path('api-example') }>Click Here</Link>.</h4>
                     </div>
                 </div>
             </div>
