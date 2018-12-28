@@ -15,7 +15,7 @@ import KaseyaIndex from "./Content/Kaseya/Index";
 import NoMatch from "./Content/404";
 import { toJS } from "mobx";
 
-@inject('store') @observer
+@observer
 class Router extends Component {
 
     render() {
