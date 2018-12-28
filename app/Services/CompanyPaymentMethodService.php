@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Company;
 use App\Models\CompanyPaymentMethod;
 use net\authorize\api\contract\v1 as AnetAPI;
 use net\authorize\api\controller as AnetController;
@@ -95,6 +96,45 @@ class CompanyPaymentMethodService extends BaseService
             ]);
         }
         
+    }
+
+    /**
+     * @param $data
+     */
+    public function setDefaultPaymentMethod($id, $company_id)
+    {
+        foreach ( CompanyPaymentMethod::where('company_id', $company_id)->get() as $method ) {
+            $new_value = $method->id == $id ? true : false;
+            if ( $new_value != $method->is_default ) {
+                $method->is_default = $new_value;
+                $method->save();
+            }
+        }
+    }
+
+    /**
+     * @param $data
+     *
+     * @throws \AppExcp
+     */
+    public function createPaymentProfile($data)
+    {
+        if ( !empty($data['dataValue']) ) {
+            $company = Company::findOrFail($data['company_id']);
+            // create payment profile
+            $payment_profile_id = $this->createAuthorizenetPaymentProfile($company->customer_profile_id, $data);
+            // get details on the payment profile
+            $payment_profile = $this->getAuthorizenetPaymentProfile($company->customer_profile_id, $payment_profile_id);
+            // create company payment method
+            CompanyPaymentMethodService::create([
+                'company_id'          => $company->id,
+                'payment_profile_id'  => $payment_profile_id,
+                'cc_type'             => $payment_profile['cc_type'],
+                'cc_last4'            => $payment_profile['cc_last4'],
+                'cc_expiration_month' => $data['cc_expiration_month'],
+                'cc_expiration_year'  => $data['cc_expiration_year'],
+            ]);
+        }
     }
 
 

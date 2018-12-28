@@ -19223,6 +19223,7 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
   transition: color 0.1s ease-out;
   border: none;
   border-radius: 0;
+  outline: initial;
   background: transparent;
   color: #cccccc;
   font-family: serif;

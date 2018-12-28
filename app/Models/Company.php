@@ -61,6 +61,11 @@ class Company extends BaseModel
     {
         return $this->hasMany('App\Models\User');
     }
+    // roles
+    public function roles()
+    {
+        return $this->hasMany('App\Models\Role');
+    }
     // company_subscriptions
     public function subscription()
     {
@@ -69,7 +74,7 @@ class Company extends BaseModel
     // company_payment_methods
     public function paymentMethods()
     {
-        return $this->hasMany('App\Models\CompanyPaymentMethod')->orderBy('is_default', 'desc');
+        return $this->hasMany('App\Models\CompanyPaymentMethod')->orderBy('created_at', 'desc');
     }
     // company_payments
     public function payments()

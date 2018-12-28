@@ -27,7 +27,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin', 'permission'],
 
     // GET
     Route::get('/', ['uses' => 'AdminIndexController@showDashboard']);
-    Route::get('data', ['uses' => 'AdminIndexController@data']);
     Route::post('save-configurator', 'AdminIndexController@saveConfigurator');
     Route::post('save-favorite', 'AdminIndexController@saveFavorite');
     Route::post('delete-favorite', 'AdminIndexController@deleteFavorite');
@@ -74,9 +73,36 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin', 'permission'],
  */
 Route::group(['prefix' => 'account', 'middleware' => ['auth:account'], 'namespace' => 'Account'], function() {
 
+    // profile
+    Route::post('profile/get', 'AccountProfileController@getProfile');
+    Route::post('profile/save', 'AccountProfileController@saveProfile');
+
+    // users
+    Route::post('users/data', ['uses' => 'AccountUserController@list']);
+    Route::patch('users/{id}', ['uses' => 'AccountUserController@restore']);
+    Route::resource('users', 'AccountUserController')->only([
+        'store', 'update', 'destroy'
+    ]);
+
+    // billing
+    Route::post('billing/payments', ['uses' => 'AccountBillingController@listPayments']);
+    Route::post('billing/payment-methods', ['uses' => 'AccountBillingController@listPaymentMethods']);
+    Route::post('billing/cancel-subscription', ['uses' => 'AccountBillingController@cancelSubscription']);
+    Route::post('billing/resume-subscription', ['uses' => 'AccountBillingController@resumeSubscription']);
+    Route::post('billing/set-default-payment-method', ['uses' => 'AccountBillingController@setDefaultPaymentMethod']);
+    Route::post('billing/delete-payment-method', ['uses' => 'AccountBillingController@deletePaymentMethod']);
+    Route::post('billing/add-payment-method', ['uses' => 'AccountBillingController@addPaymentMethod']);
+
+    // GET pages
+    Route::get('{any?}', ['uses' => 'AccountIndexController@showPortal'])->where('any', '.*');
+
+    /*
     // GET
-    Route::get('/', ['uses' => 'AccountIndexController@showDashboard']);
+    Route::get('/', ['uses' => 'AccountIndexController@showPortal']);
     Route::post('save-configurator', 'AccountIndexController@saveConfigurator');
+    Route::post('save-favorite', 'AccountIndexController@saveFavorite');
+    Route::post('delete-favorite', 'AccountIndexController@deleteFavorite');
+    Route::get('search', 'AccountSearchController@showResults');
 
     // profile
     Route::get('profile', ['uses' => 'AccountProfileController@index']);
@@ -95,6 +121,7 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth:account'], 'namespac
     // settings
     Route::get('settings', ['uses' => 'AccountSettingController@index'])->name('account.settings.index');
     Route::post('settings', ['uses' => 'AccountSettingController@update'])->name('account.settings.update');
+    */
 
 });
 

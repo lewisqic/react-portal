@@ -215,6 +215,15 @@ class User extends BaseModel implements
     }
 
     /**
+     * Set our guard name
+     * @param $name
+     */
+    public static function setGuardName($name)
+    {
+        self::$guard_name = $name;
+    }
+
+    /**
      * Return global search results
      *
      * @param $keywords
