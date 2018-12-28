@@ -191,13 +191,15 @@
 
                     <table class="table table-striped">
                         <thead>
-                            <th>Transaction ID</th>
-                            <th>Amount</th>
-                            <th>Card</th>
-                            <th>Notes</th>
-                            <th>Status</th>
-                            <th>Date</th>
-                            <th></th>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Amount</th>
+                                <th>Card</th>
+                                <th>Notes</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th></th>
+                            </tr>
                         </thead>
                         @foreach ( $payments as $payment )
 

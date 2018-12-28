@@ -66,6 +66,7 @@ class Handler extends ExceptionHandler
         $message = !empty($e->getMessage()) ? $e->getMessage() : 'An unknown error has occurred.';
         if ( empty($e->getMessage()) && is_a($e, 'Illuminate\Session\TokenMismatchException') ) {
             $message = 'Your form has expired, please refresh the page and try again.';
+            $code = 401;
         }
         if ( is_a($e, 'Illuminate\Validation\ValidationException') ) {
             $error_messages = [];

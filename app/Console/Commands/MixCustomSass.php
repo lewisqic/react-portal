@@ -81,7 +81,7 @@ class MixCustomSass extends Command
                 exec('cd ' . base_path() . ' && node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js --env.colors=' . $colors . ' --env.filename=' . $filename . ' 2>&1', $output, $return_var);
 
                 if ( $return_var === 0 ) {
-                    $this->info($filename . ' rebuilt successfully!');
+                    $this->info($filename . ' rebuilt successfully.');
                     $success_count++;
                 } else {
                     $this->error($filename . ' failed the rebuild.');

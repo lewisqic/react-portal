@@ -73,13 +73,19 @@ class CompanyService extends BaseService
             // create default role
             $role = RoleService::create([
                 'company_id' => $company->id,
-                'name'       => 'Default',
+                'name'       => 'Admin',
                 'guard_name' => User::$types[User::MEMBER_ID]['route'] . '-' . $company->id,
                 'is_default' => true,
             ]);
-
+            // create billing role
+            RoleService::create([
+                'company_id' => $company->id,
+                'name'       => 'Billing',
+                'guard_name' => User::$types[User::MEMBER_ID]['route'] . '-' . $company->id,
+                'is_default' => false,
+            ]);
             // assign all permissions to role
-            $role->givePermissionTo(Permission::where('guard_name', 'account')->get());
+            //$role->givePermissionTo(Permission::where('guard_name', 'account')->get());
 
             return [
                 'company' => $company,
