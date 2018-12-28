@@ -9,4 +9,6 @@ export const path = function(path = null) {
     return root + (path !== null && path !== '/' ? '/' + path : '');
 };
 
-export const pathName = window.location.pathname.replace(/\/account(\/)*/, '');
+export const pathName = function() {
+    return window.location.pathname.replace(/\/account(\/)*/, '');
+};
