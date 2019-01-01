@@ -448,6 +448,48 @@ APP STYLES
             }
         }
     }
+    .card.widget {
+        .card-header {
+            padding: 5px 15px;
+            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: 500;
+            color: $gray-900;
+            &.yellow {
+                background: #f9d22b;
+            }
+            &.red {
+                background: #ec3c3f;
+            }
+            &.gray {
+                background: #999999;
+                color: #fff;
+            }
+            small {
+                text-transform: none;
+                margin-left: 5px;
+                font-weight: 400;
+            }
+            span {
+                float: right;
+                a {
+                    color: $gray-900;
+                    font-size: 16px;
+                    margin-left: 15px;
+                }
+            }
+        }
+        .card-footer {
+            background: #fff;
+            border: none;
+            text-align: right;
+            a {
+                color: $gray-900;
+                font-size: 18px;
+                margin-left: 20px;
+            }
+        }
+    }
 }
 
 table.no-border th {

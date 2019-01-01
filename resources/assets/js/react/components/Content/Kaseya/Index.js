@@ -4,7 +4,7 @@ import { inject, observer} from "mobx-react";
 import * as V from 'victory';
 
 @inject('store') @observer
-class Test extends Component {
+class Index extends Component {
 
     render() {
 
@@ -24,7 +24,15 @@ class Test extends Component {
                 </div>
                 <div className="row">
                     <div className="col-sm-4">
-                        <div className="card">
+                        <div className="card widget">
+                            <div className="card-header yellow">
+                                <i className="fa fa-thumbtack mr-2" /> Widget Header <small>Widget subheader</small>
+                                <span>
+                                    <a href="#"><i className="fa fa-bars fa-rotate-90" /></a>
+                                    <a href="#"><i className="fa fa-expand-arrows-alt" /></a>
+                                    <a href="#"><i className="fal fa-times-circle" /></a>
+                                </span>
+                            </div>
                             <div className="card-body">
                                 <V.VictoryChart
                                     theme={V.VictoryTheme.material}
@@ -44,10 +52,23 @@ class Test extends Component {
                                     />
                                 </V.VictoryChart>
                             </div>
+                            <div className="card-footer">
+                                <a href="#"><i className="fa fa-comment-alt" /></a>
+                                <a href="#"><i className="fa fa-bullhorn" /></a>
+                                <a href="#"><i className="fa fa-lightbulb" /></a>
+                            </div>
                         </div>
                     </div>
                     <div className="col-sm-4">
-                        <div className="card">
+                        <div className="card widget">
+                            <div className="card-header red">
+                                <i className="fa fa-thumbtack mr-2" /> Widget Header <small>Widget subheader</small>
+                                <span>
+                                    <a href="#"><i className="fa fa-bars fa-rotate-90" /></a>
+                                    <a href="#"><i className="fa fa-expand-arrows-alt" /></a>
+                                    <a href="#"><i className="fal fa-times-circle" /></a>
+                                </span>
+                            </div>
                             <div className="card-body">
                                 <V.VictoryPie
                                     data={[
@@ -57,22 +78,43 @@ class Test extends Component {
                                     ]}
                                 />
                             </div>
+                            <div className="card-footer">
+                                <a href="#"><i className="fa fa-comment-alt" /></a>
+                                <a href="#"><i className="fa fa-bullhorn" /></a>
+                                <a href="#"><i className="fa fa-lightbulb" /></a>
+                            </div>
                         </div>
                     </div>
                     <div className="col-sm-4">
-                        <div className="card">
+                        <div className="card widget">
+                            <div className="card-header gray">
+                                <i className="fa fa-thumbtack mr-2" /> Widget Header <small>Widget subheader</small>
+                                <span>
+                                    <a href="#"><i className="fa fa-bars fa-rotate-90" /></a>
+                                    <a href="#"><i className="fa fa-expand-arrows-alt" /></a>
+                                    <a href="#"><i className="fal fa-times-circle" /></a>
+                                </span>
+                            </div>
                             <div className="card-body">
-                                <V.VictoryStack>
+                                <V.VictoryChart
+                                    theme={V.VictoryTheme.material}
+                                >
                                     <V.VictoryArea
-                                        data={[{x: "a", y: 2}, {x: "b", y: 3}, {x: "c", y: 5}]}
+                                        style={{ data: { fill: "#38b3de" } }}
+                                        data={[
+                                            { x: 1, y: 2, y0: 2 },
+                                            { x: 2, y: 3, y0: 2 },
+                                            { x: 3, y: 5, y0: 1 },
+                                            { x: 4, y: 4, y0: 1 },
+                                            { x: 5, y: 6, y0: 0 }
+                                        ]}
                                     />
-                                    <V.VictoryArea
-                                        data={[{x: "a", y: 1}, {x: "b", y: 4}, {x: "c", y: 5}]}
-                                    />
-                                    <V.VictoryArea
-                                        data={[{x: "a", y: 3}, {x: "b", y: 2}, {x: "c", y: 6}]}
-                                    />
-                                </V.VictoryStack>
+                                </V.VictoryChart>
+                            </div>
+                            <div className="card-footer">
+                                <a href="#"><i className="fa fa-comment-alt" /></a>
+                                <a href="#"><i className="fa fa-bullhorn" /></a>
+                                <a href="#"><i className="fa fa-lightbulb" /></a>
                             </div>
                         </div>
                     </div>
@@ -83,4 +125,4 @@ class Test extends Component {
 
 }
 
-export default Test
+export default Index
