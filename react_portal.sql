@@ -11,7 +11,7 @@
  Target Server Version : 50718
  File Encoding         : 65001
 
- Date: 01/01/2019 14:08:03
+ Date: 01/01/2019 14:21:16
 */
 
 SET NAMES utf8mb4;
@@ -34,7 +34,7 @@ CREATE TABLE `activity_log` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `activity_log_log_name_index` (`log_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=209 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of activity_log
@@ -241,6 +241,8 @@ INSERT INTO `activity_log` VALUES (205, 'system', 'updated', 19, 'App\\Models\\C
 INSERT INTO `activity_log` VALUES (206, 'system', 'updated', 13, 'App\\Models\\User', 13, 'App\\Models\\User', '{\"attributes\":[],\"old\":[]}', '2018-12-31 18:05:41', '2018-12-31 18:05:41');
 INSERT INTO `activity_log` VALUES (207, 'system', 'updated', 13, 'App\\Models\\User', 13, 'App\\Models\\User', '{\"attributes\":[],\"old\":[]}', '2018-12-31 18:06:16', '2018-12-31 18:06:16');
 INSERT INTO `activity_log` VALUES (208, 'system', 'updated', 13, 'App\\Models\\User', 13, 'App\\Models\\User', '{\"attributes\":[],\"old\":[]}', '2018-12-31 18:07:28', '2018-12-31 18:07:28');
+INSERT INTO `activity_log` VALUES (209, 'system', 'updated', 13, 'App\\Models\\User', 13, 'App\\Models\\User', '{\"attributes\":[],\"old\":[]}', '2019-01-01 14:20:34', '2019-01-01 14:20:34');
+INSERT INTO `activity_log` VALUES (210, 'system', 'created', 22, 'App\\Models\\User', 1, 'App\\Models\\User', '{\"attributes\":{\"first_name\":\"Admin\",\"last_name\":\"User\",\"email\":\"adminuser@example.com\",\"password\":\"$2y$10$GN0pnaIoAvc.H10jH5x4rOPtlZ9n9EkYyrBxCCIRpCKl1uagBwwSa\",\"avatar\":null,\"superuser\":1,\"custom_permissions\":0,\"company_owner\":0}}', '2019-01-01 14:21:06', '2019-01-01 14:21:06');
 COMMIT;
 
 -- ----------------------------
@@ -289,7 +291,7 @@ CREATE TABLE `authentication_log` (
   `logout_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `authentication_log_authenticatable_type_authenticatable_id_index` (`authenticatable_type`,`authenticatable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of authentication_log
@@ -380,6 +382,8 @@ INSERT INTO `authentication_log` VALUES (82, 'App\\Models\\User', 13, '192.168.3
 INSERT INTO `authentication_log` VALUES (83, 'App\\Models\\User', 13, '192.168.33.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '2019-01-01 11:54:00', NULL);
 INSERT INTO `authentication_log` VALUES (84, 'App\\Models\\User', 13, '192.168.33.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:64.0) Gecko/20100101 Firefox/64.0', '2019-01-01 11:57:54', NULL);
 INSERT INTO `authentication_log` VALUES (85, 'App\\Models\\User', 13, '192.168.33.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '2019-01-01 12:15:41', NULL);
+INSERT INTO `authentication_log` VALUES (86, 'App\\Models\\User', 13, '192.168.33.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '2019-01-01 14:12:15', '2019-01-01 14:20:34');
+INSERT INTO `authentication_log` VALUES (87, 'App\\Models\\User', 1, '192.168.33.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '2019-01-01 14:20:37', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -619,6 +623,7 @@ INSERT INTO `model_has_roles` VALUES (15, 'App\\Models\\User', 18);
 INSERT INTO `model_has_roles` VALUES (14, 'App\\Models\\User', 19);
 INSERT INTO `model_has_roles` VALUES (15, 'App\\Models\\User', 20);
 INSERT INTO `model_has_roles` VALUES (14, 'App\\Models\\User', 21);
+INSERT INTO `model_has_roles` VALUES (1, 'App\\Models\\User', 22);
 COMMIT;
 
 -- ----------------------------
@@ -806,20 +811,21 @@ CREATE TABLE `users` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
 BEGIN;
 INSERT INTO `users` VALUES (1, NULL, 1, 'Devin', 'Admin', 'devinlewis@gmail.com', '$2y$10$OjvzyjwfvgTBxIL0O9e8qeRvVeDnS9HF9zWf/MZgTFSAoRafphGO6', 'avatars/hW0Y4vrwM3lXuOny1aoApvcK4GkFUE47qZDAtBbH.jpeg', 0, 1, 0, '{\"colors\": {\"info\": \"purple\", \"danger\": \"red\", \"primary\": \"blue\", \"success\": \"green\", \"warning\": \"orange\", \"secondary\": \"grey\"}, \"layout\": {\"header_style\": \"normal\", \"submenu_style\": \"bar\"}, \"favorites\": [{\"icon\": \"fal fa-users fa-fw\", \"path\": \"admin/administrators\", \"title\": \"Administrators\"}]}', NULL, 'IysXYGrZQZJnI5Xy3UylEveT8XAnNnzPkGOdGpPKDSBrXVcG5kagBEx2ALLk', '2018-05-12 20:59:49', '2018-12-10 19:08:18', NULL);
-INSERT INTO `users` VALUES (13, 15, 2, 'Devin', 'Member', 'devin@drlnetworks.com', '$2y$10$SJX.S5Pj.ohH3EU3Z4eRUerK8rzqhy63nc8lao43SJKt8TpmwoHN.', NULL, 0, 0, 1, '{\"colors\": {\"info\": \"purple\", \"danger\": \"red\", \"primary\": \"blue\", \"success\": \"green\", \"warning\": \"orange\", \"secondary\": \"grey\"}, \"layout\": {\"header_style\": \"normal\", \"submenu_style\": \"bar\"}, \"favorites\": []}', NULL, 'sZMSqj5t67xKDK8Ase6cIfxHqvIp7JicFbXjwgne3hY673Jm3iFdCOno5Ri3', '2018-12-11 16:50:46', '2018-12-24 15:22:56', NULL);
+INSERT INTO `users` VALUES (13, 15, 2, 'Devin', 'Member', 'devin@drlnetworks.com', '$2y$10$SJX.S5Pj.ohH3EU3Z4eRUerK8rzqhy63nc8lao43SJKt8TpmwoHN.', NULL, 0, 0, 1, '{\"colors\": {\"info\": \"purple\", \"danger\": \"red\", \"primary\": \"blue\", \"success\": \"green\", \"warning\": \"orange\", \"secondary\": \"grey\"}, \"layout\": {\"header_style\": \"normal\", \"submenu_style\": \"bar\"}, \"favorites\": []}', NULL, 'Fh6Gq7I6bLuxFWDTSJft7Tpe8qcTZtRErp6BRCoaEORZK1Sl4suiiB3YuAY3', '2018-12-11 16:50:46', '2018-12-24 15:22:56', NULL);
 INSERT INTO `users` VALUES (14, 16, 2, 'Free', 'Member', 'nasyta@mailinator.net', '$2y$10$jsfXb458NQRnPepN52l5Quxil37Wt2P2arfpFKBZxx6xhP/lQryki', NULL, 0, 0, 1, '{\"colors\": {\"info\": \"purple\", \"danger\": \"red\", \"primary\": \"blue\", \"success\": \"green\", \"warning\": \"orange\", \"secondary\": \"grey\"}, \"layout\": {\"header_style\": \"normal\", \"submenu_style\": \"bar\"}, \"favorites\": []}', NULL, NULL, '2018-12-11 17:12:58', '2018-12-11 17:12:58', NULL);
 INSERT INTO `users` VALUES (15, 17, 2, 'Cameran', 'Rutledge', 'duva@mailinator.net', '$2y$10$HMDF3plSzdb1lCtdG/L76OxpUcbwFBXN519PU40VtcU9QMQmLuk3e', NULL, 0, 0, 1, '{\"colors\": {\"info\": \"purple\", \"danger\": \"red\", \"primary\": \"blue\", \"success\": \"green\", \"warning\": \"orange\", \"secondary\": \"grey\"}, \"layout\": {\"header_style\": \"normal\", \"submenu_style\": \"bar\"}, \"favorites\": []}', NULL, NULL, '2018-12-24 14:13:29', '2018-12-24 14:13:29', NULL);
 INSERT INTO `users` VALUES (18, 15, 2, 'Billing', 'Test', 'billing@test.com', '$2y$10$dg.N7tgVn7JQZJR.cOwhlOLks20RXdup/2Yri7ilXSwnk.V.ZnKG2', NULL, 0, 0, 0, '{\"colors\": {\"info\": \"purple\", \"danger\": \"red\", \"primary\": \"blue\", \"success\": \"green\", \"warning\": \"orange\", \"secondary\": \"grey\"}, \"layout\": {\"header_style\": \"normal\", \"submenu_style\": \"bar\"}, \"favorites\": []}', NULL, NULL, '2018-12-26 14:20:43', '2018-12-26 17:44:01', NULL);
 INSERT INTO `users` VALUES (19, 15, 2, 'table E', 'test', 'table@test.com', '$2y$10$SUCu4IOEXfxK9snaDhFYSukWm5qms2Cc/w8OZ7hZfkeJFazRKm2NS', NULL, 0, 0, 0, '{\"colors\": {\"info\": \"purple\", \"danger\": \"red\", \"primary\": \"blue\", \"success\": \"green\", \"warning\": \"orange\", \"secondary\": \"grey\"}, \"layout\": {\"header_style\": \"normal\", \"submenu_style\": \"bar\"}, \"favorites\": []}', NULL, NULL, '2018-12-26 16:55:47', '2018-12-26 18:17:09', '2018-12-26 18:17:09');
 INSERT INTO `users` VALUES (20, 15, 2, 'Foo EE', 'Bar', 'foo@bar.com', '$2y$10$1sPiSCeUxCfO.M9./6.nteQ6sDSpSigJ6IEldzMaY3MtcCx03tulO', NULL, 0, 0, 0, '{\"colors\": {\"info\": \"purple\", \"danger\": \"red\", \"primary\": \"blue\", \"success\": \"green\", \"warning\": \"orange\", \"secondary\": \"grey\"}, \"layout\": {\"header_style\": \"normal\", \"submenu_style\": \"bar\"}, \"favorites\": []}', NULL, NULL, '2018-12-26 17:44:39', '2018-12-27 10:52:55', '2018-12-27 10:52:55');
 INSERT INTO `users` VALUES (21, 15, 2, 'delete', 'me', 'asdf@asdfads.com', '$2y$10$FiZsvHtjWa6uejChdbIBDu9s4NpAMMqpN1/sQP7kn98PqbzqxuVJG', NULL, 0, 0, 0, '{\"colors\": {\"info\": \"purple\", \"danger\": \"red\", \"primary\": \"blue\", \"success\": \"green\", \"warning\": \"orange\", \"secondary\": \"grey\"}, \"layout\": {\"header_style\": \"normal\", \"submenu_style\": \"bar\"}, \"favorites\": []}', NULL, NULL, '2018-12-28 10:38:16', '2018-12-28 10:38:23', '2018-12-28 10:38:23');
+INSERT INTO `users` VALUES (22, NULL, 1, 'Admin', 'User', 'adminuser@example.com', '$2y$10$GN0pnaIoAvc.H10jH5x4rOPtlZ9n9EkYyrBxCCIRpCKl1uagBwwSa', NULL, 1, 0, 0, '{\"colors\": {\"info\": \"purple\", \"danger\": \"red\", \"primary\": \"blue\", \"success\": \"green\", \"warning\": \"orange\", \"secondary\": \"grey\"}, \"layout\": {\"header_style\": \"normal\", \"submenu_style\": \"bar\"}, \"favorites\": []}', NULL, NULL, '2019-01-01 14:21:06', '2019-01-01 14:21:06', NULL);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
