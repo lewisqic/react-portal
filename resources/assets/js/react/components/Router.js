@@ -9,6 +9,7 @@ import BaseLayout from './Layouts/BaseLayout';
 import Dashboard from "./Content/Dashboard";
 import Chat from "./Content/Chat";
 import Tickets from "./Content/Tickets";
+import History from "./Content/History";
 import ApiExample from "./Content/ApiExample";
 import Profile from "./Content/User/Profile";
 import UsersList from "./Content/User/UsersList";
@@ -30,6 +31,7 @@ class Router extends Component {
                             <Route exact path={ path('/') } component={Dashboard}/>
                             <Route exact path={ path('chat') } component={Chat}/>
                             <Route exact path={ path('tickets') } component={Tickets}/>
+                            <Route exact path={ path('history') } component={History}/>
                             <Route exact path={ path('api-example') } component={ApiExample}/>
                             <Route exact path={ path('profile') } component={Profile}/>
                             <Route exact path={ path('users') } component={UsersList}/>

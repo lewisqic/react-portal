@@ -140,13 +140,13 @@ class AppLayout extends Component {
                             </ul>
                         </div>
                         <div className="button-wrapper">
-                            <a href="#">Tickets</a>
+                            <Link to={ path('tickets') }>Tickets</Link>
                         </div>
                         <div className="button-wrapper">
-                            <a href="#">Live Chat</a>
+                            <Link to={ path('chat') }>Live Chat</Link>
                         </div>
                         <div className="button-wrapper">
-                            <a href="#">History</a>
+                            <Link to={ path('history') }>History</Link>
                         </div>
                     </div>
                 </CSSTransition>
