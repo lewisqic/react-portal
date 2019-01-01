@@ -11,15 +11,15 @@ class ApiExample extends Component {
 
     render() {
 
-        const endpoint = 'https://apipoc101.azurewebsites.net/EpPocApi/1.0.1/agent';
+
+
+        const endpoint = 'https://ep-apipoc101-int-secure.azurewebsites.net/EpPocApi/1.0.1/agent';
         const data = { source: 1 };
         if ( this.apiResponse === null ) {
-            setTimeout(() => {
-                external.get(endpoint, data, (res) => {
-                    notify('success', 'API example call completed!');
-                    this.apiResponse = res;
-                });
-            }, 1000);
+            external.get('agent', data, (res) => {
+                notify('success', 'API example call completed!');
+                this.apiResponse = res;
+            });
         }
 
         return (

@@ -1,4 +1,6 @@
 import notify from "./Notify";
+import {action} from "mobx";
+import { path } from './Url';
 
 class External {
 
@@ -9,17 +11,16 @@ class External {
                 if (field in api) return api[field]; // normal case
                 return function(...args) {
 
-                    let url = args[0];
-                    if ( field === 'get' && typeof args[1] === 'object' ) {
-                        let queryString = Object.keys(args[1]).map(key => key + '=' + args[1][key]).join('&');
-                        url += '?' + queryString;
-                    }
-
+                    const params = args[1] !== undefined && typeof args[1] === 'object' ? args[1] : {};
+                    const data = {};
+                    data.method = field;
+                    data.endpoint = args[0];
+                    data.data = params;
                     axios({
-                        method: field,
-                        url: url,
+                        method: 'POST',
+                        url: path('external'),
                         responseType: 'json',
-                        data: args[1] !== undefined && typeof args[1] === 'object' ? args[1] : {},
+                        data: data,
                     }).then((res) => {
                         if ( args[2] !== undefined && typeof args[2] === 'function' ) {
                             args[2](res.data);
@@ -28,7 +29,12 @@ class External {
                             args[4](res.data);
                         }
                     }).catch((error) => {
-                        const message = error.response.data || error.response.statusText;
+                        let message;
+                        if ( error && error.response ) {
+                            message = error.response.data || error.response.statusText;
+                        } else {
+                            message = error.message || 'Unknown Error';
+                        }
                         if ( args[3] !== undefined && typeof args[3] === 'function' ) {
                             args[3](message);
                         } else {
@@ -38,6 +44,7 @@ class External {
                             args[4](message);
                         }
                     });
+
 
                 };
 

@@ -15,6 +15,7 @@
 
 <div id="account"></div>
 
+@if ( isset($user) )
 <script type="text/javascript">
     window.loadData = {
         user: {!! $user->makeHidden('password')->toJson() !!},
@@ -22,6 +23,7 @@
         subscription: {!! $user->company->subscription->toJson() !!}
     }
 </script>
+@endif
 {!! Js::authorizeNetConfig() !!}
 <script type="text/javascript" src="{{ env('APP_ENV') == 'production' ? 'https://js.authorize.net/v1/Accept.js' : 'https://jstest.authorize.net/v1/Accept.js' }}" charset="utf-8"></script>
 <script src="{{ mix('js/account.js') }}"></script>

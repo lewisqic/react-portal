@@ -94,6 +94,7 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth:account'], 'namespac
     Route::post('billing/add-payment-method', ['uses' => 'AccountBillingController@addPaymentMethod']);
 
     // GET pages
+    Route::post('external', ['uses' => 'AccountIndexController@externalCall']);
     Route::get('{any?}', ['uses' => 'AccountIndexController@showPortal'])->where('any', '.*');
 
     /*
